@@ -24,6 +24,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     private ArrayList<String> newStudentsNamesArr;
     private ArrayList<String> newStudentTrialsArr;
     private HashMap <String, Integer> studentsMap;
+    private HashMap <String, Integer> trialsOfStudentMap;
     private ArrayList <Integer> studentTrialsIDArr;
     private HashSet  <String> allTrialsSet;
 
@@ -31,11 +32,14 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         resNames = new String[]{"bad", "with_hint", "good"};
         studentsMap = new HashMap<>();
+        trialsOfStudentMap = new HashMap<>();
         studentsNamesArr = new ArrayList<>();
         studentTrialsNamesArr = new ArrayList<>();
         newStudentsNamesArr = new ArrayList<>();
         newStudentTrialsArr = new ArrayList<>();
         studentTrialsIDArr = new ArrayList<>();
+
+        //пробы
         allTrialsSet = new HashSet<>();
     }
 
@@ -64,10 +68,28 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         }
     }
 
+    //извлекает HashMap всех студентов
      public HashMap<String, Integer>  extractStudents() {
           studentsMap = StudentsTable.getAllStudentsNames(this.getWritableDatabase());
           return studentsMap;
      }
+
+
+    //извлекает HashMap всех проб студента
+ //    public HashMap <String, Integer> extractTrialsOfStudent(int studentId){
+//         ArrayList <Integer> allStudentTrialsIds = new ArrayList<>();
+//         allStudentTrialsIds = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
+//         HashMap <Integer, String> allTrialsMap = new HashMap<>();
+//         allTrialsMap = TrialsTable.getAllTrialsIdAndNames(this.getReadableDatabase());
+//         for (int i = 0; i < allTrialsMap.size(); i++) {
+//
+//         }
+//
+//         trialsOfStudentMap.put()
+//
+//         return
+  //   }
+
 
 
         public void saveNewTrialToDbIfNotExists (String trialName) {
@@ -95,6 +117,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         }
         return studentTrialsNames;
     }
+
 
 
 

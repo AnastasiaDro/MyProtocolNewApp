@@ -12,7 +12,5 @@ public interface Observable {
     //у всех слушателей, передавая им обновлённые данные
     void notifyObservers();
 
-    //метод изменения данных в массиве
-    void changeArrayList(String newEnteredText, String activityName);
 }
 

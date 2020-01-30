@@ -76,19 +76,14 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 
     //извлекает HashMap всех проб студента
- //    public HashMap <String, Integer> extractTrialsOfStudent(int studentId){
-//         ArrayList <Integer> allStudentTrialsIds = new ArrayList<>();
-//         allStudentTrialsIds = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
-//         HashMap <Integer, String> allTrialsMap = new HashMap<>();
-//         allTrialsMap = TrialsTable.getAllTrialsIdAndNames(this.getReadableDatabase());
-//         for (int i = 0; i < allTrialsMap.size(); i++) {
-//
-//         }
-//
-//         trialsOfStudentMap.put()
-//
-//         return
-  //   }
+    public HashMap <String, Integer> extractTrialsOfStudent(int studentId){
+        //берём таблицу результатов и из неё выгружаем все коды проб, которые делал студент с указанным ID
+        ArrayList studentTrialsIDArray = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
+        //берём HashMap всех проб имя - id
+
+
+         return
+     }
 
 
 

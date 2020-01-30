@@ -73,4 +73,7 @@ public static HashMap<String, Integer> getAllTrialsNamesAndId(SQLiteDatabase dat
     return trialsHashMap;
 
 }
+
+
+
 }

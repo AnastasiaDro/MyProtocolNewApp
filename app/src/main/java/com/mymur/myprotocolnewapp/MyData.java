@@ -79,7 +79,13 @@ public class MyData implements Observable {
         return
     }
 
+    public HashMap reverseKeyValue (HashMap oldHashmap) {
+        HashMap newHashMap = new HashMap();
 
+
+
+        return newHashMap;
+    }
 
 
 

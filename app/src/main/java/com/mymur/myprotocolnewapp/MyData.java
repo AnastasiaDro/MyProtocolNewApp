@@ -46,9 +46,9 @@ public class MyData implements Observable {
 
 
     //метод для получения текущего HashMap-а для загрузки в List на RecyclerView
-    private HashMap <String, Integer> getCurrentHashMap(int activityCode){
+    public void  getCurrentHashMap(int activityCode){
         Thread dbThread;
-        HashMap currentHashmap = new HashMap();
+       // HashMap currentHashmap = new HashMap();
         Runnable currentHashMapRunnable;
         switch (activityCode) {
             case Constants.SPLASH_ACTIVITY_CONSTANT:
@@ -58,7 +58,7 @@ public class MyData implements Observable {
                     studentsHashMap = dbHelper.extractStudents();
                 }
             };
-            currentHashmap = studentsHashMap;
+         //   currentHashmap = studentsHashMap;
                 break;
             case Constants.HOME_ACTIVITY_CONSTANT:
                 currentHashMapRunnable = new Runnable() {
@@ -73,7 +73,7 @@ public class MyData implements Observable {
                     }
 
                 };
-                currentHashmap = studentTrialsHashMap;
+            //    currentHashmap = studentTrialsHashMap;
                 break;
 
             default:
@@ -87,7 +87,7 @@ public class MyData implements Observable {
            Log.d("Потоки MyData", "не дождались выгрузки потока");
         }
 
-        return currentHashmap;
+      //  return currentHashmap;
     }
 
 

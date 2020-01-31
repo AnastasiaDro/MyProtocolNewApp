@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">MyProtocolNewApp</string>
+    <string name="app_name">MyMVCProtocolApp</string>
+    <string name="addNew">Add new</string>
+    <string name="set_student">Select student</string>
+    <string name="students">Students</string>
+
+    <string name="set_trial">Select trial</string>
+    <string name="enter_name">Enter name</string>
+
+    <string name="setAnswer">Set answer</string>
+    <string name="begin">Begin</string>
+    <string name="have_not_trials">This student have not trials</string>
+    <string name="badAnswer">Bad</string>
+    <string name="with_hint">With hint</string>
+    <string name="good">good</string>
+    <string name="aboutStudent">About student</string>
+    <string name="aboutTrial">About trial</string>
+
+
+    <string name="hide">Hide</string>
+    <string name="delete">delete forever</string>
+    <string name="positionHide">Position is hidden</string>
+    <string name="toStatistics">See statistics</string>
+    <string name="allStudentsList">All students</string>
+    <string name="allTrialsOfStudentList">List of trials</string>
+    <string name="exitSession">Exit session</string>
+
+    <string name="aboutProgram">About app</string>
 </resources>

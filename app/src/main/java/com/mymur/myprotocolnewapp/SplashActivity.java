@@ -21,16 +21,9 @@ public class SplashActivity extends AppCompatActivity implements ActivMethods {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //создаем помощник базы данных
-
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //тут выгрузить список студентов
-
-            }
-        });
+        init();
         Intent intent = new Intent(this, HomeActivity.class);
+        myData.getCurrentHashMap(getActivityCode());
         startActivity(intent);
         finish();
     }

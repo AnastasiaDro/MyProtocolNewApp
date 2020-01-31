@@ -5,8 +5,6 @@ import android.util.Log;
 import com.mymur.myprotocolnewapp.DataBaseTables.DataBaseHelper;
 import com.mymur.myprotocolnewapp.Interfaces.Observable;
 import com.mymur.myprotocolnewapp.Interfaces.Observer;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +17,7 @@ public class MyData implements Observable {
     //список студентов имя/номер
     private HashMap studentsHashMap;
     private HashMap studentTrialsHashMap;
+    int currentStudentId;
 
 
     //делаем из класса синглтон
@@ -27,6 +26,7 @@ public class MyData implements Observable {
         studentsHashMap = new HashMap();
         observers = new LinkedList<>();
         this.dbHelper = dbHelper;
+        currentStudentId = -1;
 
 
         //в получившийся аррэйлист загружаем данные из БД
@@ -45,9 +45,10 @@ public class MyData implements Observable {
     }
 
 
+    //метод для получения текущего HashMap-а для загрузки в List на RecyclerView
     private HashMap <String, Integer> getCurrentHashMap(int activityCode){
         Thread dbThread;
-
+        HashMap currentHashmap = new HashMap();
         Runnable currentHashMapRunnable;
         switch (activityCode) {
             case Constants.SPLASH_ACTIVITY_CONSTANT:
@@ -57,14 +58,23 @@ public class MyData implements Observable {
                     studentsHashMap = dbHelper.extractStudents();
                 }
             };
+            currentHashmap = studentsHashMap;
                 break;
             case Constants.HOME_ACTIVITY_CONSTANT:
                 currentHashMapRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        studentTrialsHashMap = dbHelper.);
+
+                        @Override
+                        public void run () {
+                            if (!(currentStudentId <0)) {
+                                studentTrialsHashMap = dbHelper.extractTrialsOfStudentHashMap(currentStudentId);
+                            } else {
+                                Log.d("MyData", "не выбран студент");
+                            }
                     }
+
                 };
+                currentHashmap = studentTrialsHashMap;
+                break;
 
             default:
                 throw new IllegalStateException("Unexpected value: " + activityCode);
@@ -77,7 +87,7 @@ public class MyData implements Observable {
            Log.d("Потоки MyData", "не дождались выгрузки потока");
         }
 
-        return
+        return currentHashmap;
     }
 
 

@@ -75,16 +75,6 @@ public class DataBaseHelper extends SQLiteOpenHelper{
      }
 
 
-    //извлекает HashMap всех проб студента
-    public HashMap <String, Integer> extractTrialsOfStudent(int studentId){
-        //берём таблицу результатов и из неё выгружаем все коды проб, которые делал студент с указанным ID
-        ArrayList studentTrialsIDArray = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
-        //берём HashMap всех проб имя - id
-
-
-         return
-     }
-
 
 
         public void saveNewTrialToDbIfNotExists (String trialName) {
@@ -100,6 +90,27 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         trialId = TrialsTable.getAllTrialsNamesAndId(this.getReadableDatabase()).get(trialName);
         return trialId;
     }
+
+    //получить все пробы студента в виде HashMap  Id пробы - имя пробы:
+    public HashMap extractTrialsOfStudentHashMap (int studentId){
+        //получаем список всех Id всех проб, которые выполнял студент
+        ArrayList <Integer> allStudentTrialsIds = new ArrayList<>();
+        allStudentTrialsIds = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
+        HashMap <Integer, String> allTrialsMap = new HashMap<>();
+        //получаем HashMap всех проб
+        allTrialsMap = TrialsTable.getAllTrialsIdAndNames(this.getReadableDatabase());
+        //Создадим HashMap для пар "ключ-значение" проб, которые есть у студента
+        HashMap <Integer, String> studentTrialsHashMap = new HashMap();
+        // инт, куда будем в цикле записывать id, хранящийся в массиве
+        Integer key;
+        for (int i = 0; i < allStudentTrialsIds.size(); i++) {
+            key = allStudentTrialsIds.get(i);
+            studentTrialsHashMap.put(key, allTrialsMap.get(key));
+        }
+        return studentTrialsHashMap;
+    }
+
+
 
     public ArrayList <String> getAllStudentTrialsNamesByIdArrayList(int studentId){
         ArrayList <Integer> allStudentTrialsIds = new ArrayList<>();

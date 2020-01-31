@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class MyData implements Observable {
     private static MyData instance;
@@ -79,11 +80,15 @@ public class MyData implements Observable {
         return
     }
 
-    public HashMap reverseKeyValue (HashMap oldHashmap) {
+
+    //поменяем местами ключ и значение в HashMap (идея в том, что менять местами данные в HashMap быстрее, чем поновой выгружать из базы
+    public HashMap reverseKeyValue (HashMap <Object, Object> oldHashmap) {
         HashMap newHashMap = new HashMap();
-
-
-
+        for (Map.Entry entry : oldHashmap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + " Value: "
+                    + entry.getValue());
+            newHashMap.put(entry.getValue().toString(), Integer.valueOf(entry.getKey().toString()));
+        }
         return newHashMap;
     }
 

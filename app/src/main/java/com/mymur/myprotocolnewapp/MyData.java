@@ -5,6 +5,8 @@ import android.util.Log;
 import com.mymur.myprotocolnewapp.DataBaseTables.DataBaseHelper;
 import com.mymur.myprotocolnewapp.Interfaces.Observable;
 import com.mymur.myprotocolnewapp.Interfaces.Observer;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +19,14 @@ public class MyData implements Observable {
     //список студентов имя/номер
     private HashMap studentsHashMap;
     private HashMap studentTrialsHashMap;
+    private HashMap currentHashMap;
+
     int currentStudentId;
+
+
+
+    private ArrayList dataListForRecycler;
+
 
 
     //делаем из класса синглтон
@@ -27,7 +36,8 @@ public class MyData implements Observable {
         observers = new LinkedList<>();
         this.dbHelper = dbHelper;
         currentStudentId = -1;
-
+        currentHashMap = new HashMap();
+        dataListForRecycler = new ArrayList();
 
         //в получившийся аррэйлист загружаем данные из БД
     }
@@ -45,6 +55,16 @@ public class MyData implements Observable {
     }
 
 
+    public ArrayList getDataListForRecycler() {
+        if (!currentHashMap.isEmpty()) {
+            dataListForRecycler.clear();
+            dataListForRecycler.addAll(currentHashMap.values());
+        }
+        return dataListForRecycler;
+    }
+
+
+
     //метод для получения текущего HashMap-а для загрузки в List на RecyclerView
     public void  getCurrentHashMap(int activityCode){
         Thread dbThread;
@@ -58,7 +78,7 @@ public class MyData implements Observable {
                     studentsHashMap = dbHelper.extractStudents();
                 }
             };
-         //   currentHashmap = studentsHashMap;
+            currentHashMap = studentsHashMap;
                 break;
             case Constants.HOME_ACTIVITY_CONSTANT:
                 currentHashMapRunnable = new Runnable() {
@@ -73,7 +93,7 @@ public class MyData implements Observable {
                     }
 
                 };
-            //    currentHashmap = studentTrialsHashMap;
+                currentHashMap = studentTrialsHashMap;
                 break;
 
             default:
@@ -103,7 +123,6 @@ public class MyData implements Observable {
     }
 
 
-
     @Override
     public void registerObserver(Observer observer) {
         observers.add(observer);
@@ -118,6 +137,8 @@ public class MyData implements Observable {
     public void notifyObservers() {
 
     }
+
+
 
 
 

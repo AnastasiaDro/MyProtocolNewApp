@@ -24,6 +24,10 @@ public class HomeActivity extends AppCompatActivity implements ActivMethods {
     }
 
 
+
+
+
+
     @Override
     public void init(){
         fragment = new ListFragment(placeId);

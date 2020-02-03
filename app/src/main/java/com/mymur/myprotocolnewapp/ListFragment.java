@@ -50,7 +50,8 @@ public class ListFragment extends Fragment implements Observer {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        //не даём пересоздать фрагмент при повороте экрана
+        setRetainInstance(true);
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         //получим доступ к классу MyData;
         myData = MyData.getMyData();
@@ -78,6 +79,7 @@ public class ListFragment extends Fragment implements Observer {
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
+        myAdapter = new MyAdapter();
         myAdapter = new MyAdapter(myData.getDataListForRecycler());
         recyclerView.setAdapter(myAdapter);
     }
@@ -92,11 +94,14 @@ public class ListFragment extends Fragment implements Observer {
     }
 
 
+    //здесь кликлистенер для кнопки
+
+
 
 //TODO
 //вот тут нужно сделать обновление списка recyclerView
     @Override
     public void updateViewData(String newString) {
-
+        myAdapter.notifyDataSetChanged();
     }
 }

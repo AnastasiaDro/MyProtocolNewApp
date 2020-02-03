@@ -62,11 +62,17 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
     }
 
-    public void saveStudentsToDb(ArrayList <String> newStudentsArray) {
+    public void saveArrayStudentsToDb(ArrayList <String> newStudentsArray) {
         for (int i = 0; i < newStudentsArray.size(); i++) {
-            StudentsTable.addStudent(newStudentsArray.get(i), this.getWritableDatabase());
+    //        StudentsTable.addStudent(newStudentsArray.get(i), this.getWritableDatabase());
+            saveOneStudentToDb(newStudentsArray.get(i));
         }
     }
+
+    public void saveOneStudentToDb(String newStudent) {
+        StudentsTable.addStudent(newStudent, this.getWritableDatabase());
+    }
+
 
     //извлекает HashMap всех студентов
      public HashMap<String, Integer>  extractStudents() {

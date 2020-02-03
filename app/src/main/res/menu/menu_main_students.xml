@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/to_statistics"
+        android:orderInCategory="100"
+        android:title="@string/toStatistics"/>
+    <item
+        android:id="@+id/allStudentsList"
+        android:orderInCategory="200"
+        android:title="@string/allStudentsList" />
+
+    <item
+        android:id="@+id/aboutProgram"
+        android:orderInCategory="300"
+        android:title="@string/aboutProgram"
+        />
+    <item
+        android:id="@+id/endSession"
+        android:orderInCategory="400"
+        android:title="@string/exitSession"/>
+</menu>

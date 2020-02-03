@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class MyData implements Observable {
     private static MyData instance;
-    private List observers;
+    private List <Observer> observers;
     private DataBaseHelper dbHelper;
     //список студентов имя/номер
     private HashMap studentsHashMap;
@@ -123,6 +123,11 @@ public class MyData implements Observable {
     }
 
 
+
+
+
+
+
     @Override
     public void registerObserver(Observer observer) {
         observers.add(observer);
@@ -135,7 +140,9 @@ public class MyData implements Observable {
 
     @Override
     public void notifyObservers() {
-
+        for (Observer observer : observers) {
+            observer.updateViewData();
+        }
     }
 
 

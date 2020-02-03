@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mymur.myprotocolnewapp.R;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MyAdapter extends RecyclerView.Adapter  {
-    private ArrayList myDataList;
-
+public class MyAdapter extends RecyclerView.Adapter {
+   // private ArrayList myDataList;
+    MyData myData;
+    ArrayList myDataList;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -29,6 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter  {
 
     //Provide a suitable constructor (depends on the kind of dataset)
     public MyAdapter (ArrayList myDataList) {
+        this.myData = MyData.getMyData();
         this.myDataList = myDataList;
     }
 
@@ -52,6 +56,9 @@ public class MyAdapter extends RecyclerView.Adapter  {
     }
 
 
+    public void changeDataList(ArrayList newDataList) {
+        myDataList = newDataList;
+    }
 
 
     @Override

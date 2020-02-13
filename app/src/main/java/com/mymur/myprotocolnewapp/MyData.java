@@ -61,17 +61,18 @@ public class MyData implements Observable {
     public ArrayList getDataListForRecycler() {
         if (!currentHashMap.isEmpty()) {
             dataListForRecycler.clear();
-            dataListForRecycler.addAll(currentHashMap.values());
         }
+        dataListForRecycler.addAll(currentHashMap.values());
         return dataListForRecycler;
     }
 
 
 
     //метод для получения текущего HashMap-а для загрузки в List на RecyclerView
-    public void  getCurrentHashMap(int activityCode){
+    public HashMap  getCurrentHashMap(int activityCode){
         Thread dbThread;
-       // HashMap currentHashmap = new HashMap();
+        //ДОБАВИЛА
+        HashMap currentHashmap = new HashMap();
         Runnable currentHashMapRunnable;
         switch (activityCode) {
             case Constants.SPLASH_ACTIVITY_CONSTANT:
@@ -79,11 +80,16 @@ public class MyData implements Observable {
                 @Override
                 public void run() {
                     studentsHashMap = dbHelper.extractStudents();
+                    currentHashMap = studentsHashMap;
                 }
             };
-            currentHashMap = studentsHashMap;
+            //поставим
+
+//
+      //      currentHashMap = studentsHashMap;
                 break;
-            case Constants.HOME_ACTIVITY_CONSTANT:
+      //      case Constants.HOME_ACTIVITY_CONSTANT:
+            case Constants.PRACTICE_ACTIVITY_CONSTANT:
                 currentHashMapRunnable = new Runnable() {
 
                         @Override
@@ -93,11 +99,16 @@ public class MyData implements Observable {
                             } else {
                                 Log.d("MyData", "не выбран студент");
                             }
+                            currentHashMap = studentTrialsHashMap;
                     }
 
                 };
-                currentHashMap = studentTrialsHashMap;
+       //
+      //          currentHashMap = studentTrialsHashMap;
                 break;
+            case Constants.HOME_ACTIVITY_CONSTANT:
+                return currentHashmap;
+
 
             default:
                 throw new IllegalStateException("Unexpected value: " + activityCode);
@@ -110,7 +121,8 @@ public class MyData implements Observable {
            Log.d("Потоки MyData", "не дождались выгрузки потока");
         }
 
-      //  return currentHashmap;
+//ДОБАВИЛА
+      return currentHashmap;
     }
 
 

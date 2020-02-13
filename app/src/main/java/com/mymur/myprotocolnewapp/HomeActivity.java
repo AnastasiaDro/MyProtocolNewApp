@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements ActivMethods {
 
     @Override
     public void init(){
-        fragment = new ListFragment(placeId);
+        fragment = new ListFragment(placeId, getActivityCode());
         Log.d("HomeActivity", "Создан ListFragment");
         fragment.postFragment(this);
     }

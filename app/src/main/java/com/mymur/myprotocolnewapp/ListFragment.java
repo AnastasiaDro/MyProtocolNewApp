@@ -37,7 +37,7 @@ public class ListFragment extends Fragment implements Observer {
 
     private MyData myData;
     private int placeId;
-    private int activityCode;
+    //private int activityCode;
 
     //КликЛистенер для кнопки
     AddNewClickListener addNewClickListener;
@@ -46,7 +46,7 @@ public class ListFragment extends Fragment implements Observer {
     //Конструктор
     public ListFragment(int placeId, int activityCode) {
         this.placeId = placeId;
-        this.activityCode = activityCode;
+       // this.activityCode = activityCode;
         myData = MyData.getMyData();
         myData.registerObserver(this);
         addNewClickListener = new AddNewClickListener(activityCode);
@@ -96,12 +96,7 @@ public class ListFragment extends Fragment implements Observer {
     }
 
 
-    //здесь кликлистенер для кнопки
-
-
-
-//TODO
-//вот тут нужно сделать обновление списка recyclerView
+//обновление списка recyclerView
     @Override
     public void updateViewData() {
         myAdapter.notifyDataSetChanged();

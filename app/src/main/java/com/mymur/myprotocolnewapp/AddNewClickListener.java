@@ -1,5 +1,6 @@
 package com.mymur.myprotocolnewapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
@@ -14,22 +15,23 @@ public class AddNewClickListener implements View.OnClickListener {
     String myNewString;
     MyData myData;
     DataBaseHelper dataBaseHelper;
+    int activityCode;
 
-    public AddNewClickListener() {
+    public AddNewClickListener(int activityCode) {
         this.myData = MyData.getMyData();
-        this.dataBaseHelper = myData.
-
+        this.dataBaseHelper = myData.getDbHelper();
+        this.activityCode = activityCode;
     }
 
     @Override
     public void onClick(View v) {
         final Context context = v.getContext();
         final EditText input = new EditText(context);
-        createInputDialog(context, input, recyclerView);
+        createInputDialog(context, input);
     }
 
     //делаем диалог с юзером для добавления нового значения в отображаемый массив
-    protected void createInputDialog(Context context, final EditText input, final RecyclerView recyclerView) {
+    protected void createInputDialog(Context context, final EditText input) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.enter_name);
         builder.setView(input);
@@ -38,11 +40,7 @@ public class AddNewClickListener implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 myNewString = input.getText().toString();
-                //изменяем данные в Observable классе и в нем уже уведомляем об этом наблюдателей
-                myData.changeArrayList(myNewString, activityName);
-                //изменяем текущие имя и ID на новые
-                // myData.setCurrentStudentNameAndId(myNewString);
-
+                addToDataBaseAndUpdateData(myNewString);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -56,8 +54,19 @@ public class AddNewClickListener implements View.OnClickListener {
 
     }
 
-    public void addToDataBase(String myNewString) {
 
+    //добавляет новую строку в базу данных
+    public void addToDataBaseAndUpdateData(String myNewString) {
+        switch (activityCode) {
+            case (Constants.HOME_ACTIVITY_CONSTANT):
+                dataBaseHelper.saveOneStudentToDb(myNewString);
+            break;
+            case (Constants.PRACTICE_ACTIVITY_CONSTANT):
+                dataBaseHelper.saveNewTrialToDbIfNotExists(myNewString);
+             break;
+        }
+        //обновляем MyData и уведомляем слушателей
+        myData.updateData(activityCode);
     }
 
 }

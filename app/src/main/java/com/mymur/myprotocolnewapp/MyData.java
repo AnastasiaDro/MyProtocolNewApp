@@ -54,6 +54,9 @@ public class MyData implements Observable {
         return instance;
     }
 
+    public DataBaseHelper getDbHelper() {
+        return dbHelper;
+    }
 
     public ArrayList getDataListForRecycler() {
         if (!currentHashMap.isEmpty()) {
@@ -123,7 +126,13 @@ public class MyData implements Observable {
     }
 
 
-
+    //обновляем MyData и уведомляем слушателей
+    public void updateData(int activityCode){
+        //поновой получаем текущий hashMap для ArrayList-а
+        getCurrentHashMap(activityCode);
+        //уведомляем всех слушателей
+        notifyObservers();
+    }
 
 
 
@@ -144,6 +153,8 @@ public class MyData implements Observable {
             observer.updateViewData();
         }
     }
+
+
 
 
 

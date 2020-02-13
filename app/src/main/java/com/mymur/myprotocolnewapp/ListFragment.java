@@ -1,5 +1,6 @@
 package com.mymur.myprotocolnewapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.mymur.myprotocolnewapp.Interfaces.ActivMethods;
 import com.mymur.myprotocolnewapp.Interfaces.Observer;
 
 import java.util.ArrayList;
@@ -35,18 +37,19 @@ public class ListFragment extends Fragment implements Observer {
 
     private MyData myData;
     private int placeId;
+    private int activityCode;
 
-
-    //для RecyclerView
-    //адаптер
-
+    //КликЛистенер для кнопки
+    AddNewClickListener addNewClickListener;
 
 
     //Конструктор
-    public ListFragment(int placeId) {
+    public ListFragment(int placeId, int activityCode) {
         this.placeId = placeId;
+        this.activityCode = activityCode;
         myData = MyData.getMyData();
         myData.registerObserver(this);
+        addNewClickListener = new AddNewClickListener(activityCode);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,13 +62,12 @@ public class ListFragment extends Fragment implements Observer {
         findViews(view);
         //RecyclerView
         initRecycler(view);
-
         return view;
     }
 
     public void findViews(View view){
         addNewBtn = view.findViewById(R.id.addNewBtn);
-        // addNewBtn.setOnClickListener(addNewClickListener);
+        addNewBtn.setOnClickListener(addNewClickListener);
         //ищем текстВью с заголовком
         listTitleText = view.findViewById(R.id.listTitleText);
     }
@@ -79,7 +81,7 @@ public class ListFragment extends Fragment implements Observer {
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-        myAdapter = new MyAdapter();
+      //  myAdapter = new MyAdapter();
         myAdapter = new MyAdapter(myData.getDataListForRecycler());
         recyclerView.setAdapter(myAdapter);
     }
@@ -101,7 +103,7 @@ public class ListFragment extends Fragment implements Observer {
 //TODO
 //вот тут нужно сделать обновление списка recyclerView
     @Override
-    public void updateViewData(String newString) {
+    public void updateViewData() {
         myAdapter.notifyDataSetChanged();
     }
 }

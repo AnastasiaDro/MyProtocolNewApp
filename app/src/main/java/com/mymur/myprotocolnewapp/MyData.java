@@ -19,6 +19,8 @@ public class MyData implements Observable {
     //список студентов имя/номер
     private HashMap studentsHashMap;
     private HashMap studentTrialsHashMap;
+
+
     private HashMap currentHashMap;
 
     int currentStudentId;
@@ -30,6 +32,14 @@ public class MyData implements Observable {
 
 
     //делаем из класса синглтон
+
+    public void setCurrentHashMap(HashMap currentHashMap) {
+        this.currentHashMap = currentHashMap;
+    }
+
+    public int getCurrentStudentId() {
+        return currentStudentId;
+    }
 
     private MyData(DataBaseHelper dbHelper){
         studentsHashMap = new HashMap();
@@ -66,63 +76,22 @@ public class MyData implements Observable {
         return dataListForRecycler;
     }
 
-
-
     //метод для получения текущего HashMap-а для загрузки в List на RecyclerView
-    public HashMap  getCurrentHashMap(int activityCode){
-        Thread dbThread;
+    public HashMap  takeCurrentHashMap(int activityCode){
+       GetListThread getListThread;
+       Log.d("начало currentHashMap=", currentHashMap.toString());
+
         //ДОБАВИЛА
-        HashMap currentHashmap = new HashMap();
-        Runnable currentHashMapRunnable;
-        switch (activityCode) {
-            case Constants.SPLASH_ACTIVITY_CONSTANT:
-            currentHashMapRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    studentsHashMap = dbHelper.extractStudents();
-                    currentHashMap = studentsHashMap;
-                }
-            };
-            //поставим
-
-//
-      //      currentHashMap = studentsHashMap;
-                break;
-      //      case Constants.HOME_ACTIVITY_CONSTANT:
-            case Constants.PRACTICE_ACTIVITY_CONSTANT:
-                currentHashMapRunnable = new Runnable() {
-
-                        @Override
-                        public void run () {
-                            if (!(currentStudentId <0)) {
-                                studentTrialsHashMap = dbHelper.extractTrialsOfStudentHashMap(currentStudentId);
-                            } else {
-                                Log.d("MyData", "не выбран студент");
-                            }
-                            currentHashMap = studentTrialsHashMap;
-                    }
-
-                };
-       //
-      //          currentHashMap = studentTrialsHashMap;
-                break;
-            case Constants.HOME_ACTIVITY_CONSTANT:
-                return currentHashmap;
-
-
-            default:
-                throw new IllegalStateException("Unexpected value: " + activityCode);
-        }
-        dbThread = new Thread(currentHashMapRunnable, "");
-        dbThread.start();
+        getListThread = new GetListThread(dbHelper, activityCode);
+        getListThread.start();
         try {
-            dbThread.join();
+            getListThread.join();
         } catch (InterruptedException e){
            Log.d("Потоки MyData", "не дождались выгрузки потока");
         }
-
-//ДОБАВИЛА
-      return currentHashmap;
+        //он изменяется из в GetListThread:
+        Log.d("после потока HashMap=", currentHashMap.toString());
+      return currentHashMap;
     }
 
 
@@ -141,7 +110,7 @@ public class MyData implements Observable {
     //обновляем MyData и уведомляем слушателей
     public void updateData(int activityCode){
         //поновой получаем текущий hashMap для ArrayList-а
-        getCurrentHashMap(activityCode);
+        takeCurrentHashMap(activityCode);
         //уведомляем всех слушателей
         notifyObservers();
     }

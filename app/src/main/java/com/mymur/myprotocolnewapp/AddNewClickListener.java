@@ -1,14 +1,11 @@
 package com.mymur.myprotocolnewapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.mymur.myprotocolnewapp.DataBaseTables.DataBaseHelper;
 
 public class AddNewClickListener implements View.OnClickListener {

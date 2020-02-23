@@ -14,7 +14,6 @@ public class HomeActivity extends AppCompatActivity implements ActivMethods {
     private MyData myData;
     int placeId;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +21,6 @@ public class HomeActivity extends AppCompatActivity implements ActivMethods {
         placeId = R.id.placeholder;
         init();
     }
-
-
-
-
-
 
     @Override
     public void init(){

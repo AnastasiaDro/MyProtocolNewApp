@@ -9,11 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mymur.myprotocolnewapp.R;
-
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 public class MyAdapter extends RecyclerView.Adapter {
    // private ArrayList myDataList;

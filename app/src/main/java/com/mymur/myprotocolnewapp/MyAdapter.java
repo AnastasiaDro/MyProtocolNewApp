@@ -58,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     public void changeDataList(ArrayList newDataList) {
         myDataList = newDataList;
+        notifyDataSetChanged();
     }
 
 

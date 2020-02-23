@@ -99,6 +99,7 @@ public class ListFragment extends Fragment implements Observer {
 //обновление списка recyclerView
     @Override
     public void updateViewData() {
+        myData.getDataListForRecycler();
         myAdapter.notifyDataSetChanged();
     }
 }

@@ -19,6 +19,8 @@ public class MyData implements Observable {
     //список студентов имя/номер
     private HashMap studentsHashMap;
     private HashMap studentTrialsHashMap;
+    //счетчик использования метода getDataListForRecycler;
+    int dataListUsing = 0;
 
 
     private HashMap currentHashMap;
@@ -74,6 +76,11 @@ public class MyData implements Observable {
         }
         Log.d("getDataList myData", currentHashMap.toString());
         dataListForRecycler.addAll(currentHashMap.values());
+        //счетчик использования метода
+        dataListUsing++;
+        Log.d("getList use раз: ", Integer.toString(dataListUsing));
+
+
         return dataListForRecycler;
     }
 

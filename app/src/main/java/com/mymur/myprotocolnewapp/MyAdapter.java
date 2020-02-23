@@ -1,6 +1,5 @@
 package com.mymur.myprotocolnewapp;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

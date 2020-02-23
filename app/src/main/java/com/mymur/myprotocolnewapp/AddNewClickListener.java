@@ -47,10 +47,7 @@ public class AddNewClickListener implements View.OnClickListener {
             }
         });
         builder.show();
-
-
     }
-
 
     //добавляет новую строку в базу данных
     public void addToDataBaseAndUpdateData(String myNewString) {

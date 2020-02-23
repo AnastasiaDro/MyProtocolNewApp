@@ -1,10 +1,8 @@
 package com.mymur.myprotocolnewapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
-
 import com.mymur.myprotocolnewapp.Interfaces.ActivMethods;
 
 //основная активность

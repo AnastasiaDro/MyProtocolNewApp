@@ -22,19 +22,12 @@ public class MyData implements Observable {
     //счетчик использования метода getDataListForRecycler;
     int dataListUsing = 0;
 
-
     private HashMap currentHashMap;
-
     int currentStudentId;
-
-
-
     private ArrayList dataListForRecycler;
 
 
-
     //делаем из класса синглтон
-
     public void setCurrentHashMap(HashMap currentHashMap) {
         this.currentHashMap = currentHashMap;
     }
@@ -50,7 +43,6 @@ public class MyData implements Observable {
         currentStudentId = -1;
         currentHashMap = new HashMap();
         dataListForRecycler = new ArrayList();
-
         //в получившийся аррэйлист загружаем данные из БД
     }
 

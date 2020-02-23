@@ -92,7 +92,6 @@ public class ListFragment extends Fragment implements Observer {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(placeId, this);
         ft.commit();
-
     }
 
 

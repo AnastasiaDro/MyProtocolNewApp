@@ -1,5 +1,7 @@
 package com.mymur.myprotocolnewapp;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +40,8 @@ public class MyAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.linear_card, parent, false);
-
+ //    TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.linear_card, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.linear_card, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(v);
         return myViewHolder;
     }
@@ -48,7 +50,9 @@ public class MyAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TextView textView = holder.itemView.findViewById(R.id.textName);
-        textView.setText((Integer)myDataList.get(position));
+        Log.d("MyDataList", myDataList.toString());
+        Log.d("position=", Integer.toString(position));
+        textView.setText(myDataList.get(position).toString());
     }
 
 

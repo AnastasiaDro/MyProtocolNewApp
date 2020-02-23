@@ -72,6 +72,7 @@ public class MyData implements Observable {
         if (!currentHashMap.isEmpty()) {
             dataListForRecycler.clear();
         }
+        Log.d("getDataList myData", currentHashMap.toString());
         dataListForRecycler.addAll(currentHashMap.values());
         return dataListForRecycler;
     }

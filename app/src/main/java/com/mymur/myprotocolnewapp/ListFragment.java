@@ -98,7 +98,7 @@ public class ListFragment extends Fragment implements Observer {
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
 
-        myAdapter = new MyAdapter(myData.getDataListForRecycler(), activityCode);
+        myAdapter = new MyAdapter(myData.getDataListForRecycler());
         recyclerView.setAdapter(myAdapter);
     }
 

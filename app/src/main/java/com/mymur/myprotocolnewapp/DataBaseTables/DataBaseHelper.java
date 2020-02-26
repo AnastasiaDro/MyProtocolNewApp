@@ -130,7 +130,11 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         return studentTrialsNames;
     }
 
-    //скрывает значение
+    //делает значение в списке студентов невидимым
+    //TODO
+    public void makeStudentInvisible(int student_id) {
+        StudentsTable.makeStudentInvisible(student_id, this.getWritableDatabase());
+    }
 
 
 }

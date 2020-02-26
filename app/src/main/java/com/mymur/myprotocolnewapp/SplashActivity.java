@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity implements ActivMethods {
         super.onCreate(savedInstanceState);
         //создаем помощник базы данных
         init();
-        myData.takeCurrentHashMap(getActivityCode());
+        myData.takeCurrentHashMap();
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();

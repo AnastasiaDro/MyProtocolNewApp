@@ -54,7 +54,8 @@ public class MyData implements Observable {
     public static MyData getInstance(DataBaseHelper dbHelper){
         if (instance == null) {
             instance = new MyData(dbHelper);
-
+        //если это запуск программы, то текущий код активности сделаем HOME_ACTIVITY_CONSTANT - будут выгруджаться студенты
+            instance.setCurrentActivityCode(Constants.HOME_ACTIVITY_CONSTANT);
         }
         return instance;
     }
@@ -92,12 +93,12 @@ public class MyData implements Observable {
     }
 
     //метод для получения текущего HashMap-а для загрузки в List на RecyclerView
-    public HashMap  takeCurrentHashMap(int activityCode){
+    public HashMap  takeCurrentHashMap(){
        GetListThread getListThread;
        Log.d("начало currentHashMap=", currentHashMap.toString());
 
         //ДОБАВИЛА
-        getListThread = new GetListThread(dbHelper, activityCode);
+        getListThread = new GetListThread(dbHelper, currentActivityCode);
         getListThread.start();
         try {
             getListThread.join();
@@ -123,9 +124,9 @@ public class MyData implements Observable {
 
 
     //обновляем MyData и уведомляем слушателей
-    public void updateData(int activityCode){
+    public void updateData(){
         //поновой получаем текущий hashMap для ArrayList-а
-        takeCurrentHashMap(activityCode);
+        takeCurrentHashMap();
         //уведомляем всех слушателей
         notifyObservers();
     }
@@ -152,14 +153,10 @@ public class MyData implements Observable {
 
     public void hideNameFromList(String name) {
         //получим id из базы данных
-        try {
-            int id = currentHashMap.get(name);
-        }catch (NullPointerException e) {
-            System.out.println("Нет значения "+ name);
-        }
+        int id = currentHashMap.get(name);
+
         //запустим поток, который внесёт заметку в БД, что item теперь скрыт:
         //TODO сделать поток, скрывающий значение в БД
-
 
         //удалим из текущего сurrentHashMap
         currentHashMap.remove(name);

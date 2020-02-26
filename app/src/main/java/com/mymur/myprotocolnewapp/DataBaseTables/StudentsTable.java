@@ -52,7 +52,7 @@ public class StudentsTable {
     }
 
     //Метод делания студента невидимым
-    public static void makeStudentInvisible(String studentName, SQLiteDatabase database) {
+    public static void makeStudentInvisible(int student_id, SQLiteDatabase database) {
 
     }
 

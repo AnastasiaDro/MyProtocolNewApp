@@ -51,7 +51,7 @@ public class AddNewClickListener implements View.OnClickListener {
 
     //добавляет новую строку в базу данных
     public void addToDataBaseAndUpdateData(String myNewString) {
-        switch (activityCode) {
+        switch (myData.getCurrentActivityCode()) {
             case (Constants.HOME_ACTIVITY_CONSTANT):
                 dataBaseHelper.saveOneStudentToDb(myNewString);
             break;
@@ -60,7 +60,7 @@ public class AddNewClickListener implements View.OnClickListener {
              break;
         }
         //обновляем MyData и уведомляем слушателей
-        myData.updateData(activityCode);
+        myData.updateData();
     }
 
 }

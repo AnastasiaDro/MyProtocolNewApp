@@ -60,10 +60,10 @@ public class MyAdapter extends RecyclerView.Adapter {
 
 
     //Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter (ArrayList myDataList, int activityCode) {
+    public MyAdapter (ArrayList myDataList) {
         this.myData = MyData.getMyData();
         this.myDataList = myDataList;
-        this.activityCode = activityCode;
+        this.activityCode = myData.getCurrentActivityCode();
         //строка, которую нужно скрыть и изменить в базе данных
         hidingName = null;
 

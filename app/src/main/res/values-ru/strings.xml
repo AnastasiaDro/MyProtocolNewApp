@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyMVCProtocolApp</string>
+    <string name="app_name">MyProtocolNewApp</string>
     <string name="addNew">Добавить</string>
     <string name="set_student">Выберите ученика</string>
     <string name="students">Ученики</string>

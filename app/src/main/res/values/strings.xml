@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyMVCProtocolApp</string>
+    <string name="app_name">MyProtocolNewApp</string>
     <string name="addNew">Add new</string>
     <string name="set_student">Select student</string>
     <string name="students">Students</string>

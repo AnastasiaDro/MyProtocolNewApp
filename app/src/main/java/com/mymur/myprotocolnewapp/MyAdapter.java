@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter {
@@ -17,6 +18,7 @@ public class MyAdapter extends RecyclerView.Adapter {
     MyData myData;
     ArrayList myDataList;
     int activityCode;
+    String hidingName;
 
     //ДЛЯ КОНТЕСТНОГО МЕНЮ
     private int position;
@@ -62,6 +64,8 @@ public class MyAdapter extends RecyclerView.Adapter {
         this.myData = MyData.getMyData();
         this.myDataList = myDataList;
         this.activityCode = activityCode;
+        //строка, которую нужно скрыть и изменить в базе данных
+        hidingName = null;
 
     }
 
@@ -70,18 +74,16 @@ public class MyAdapter extends RecyclerView.Adapter {
     //удаление элемента из списка
     //метод скрытия студента из списка
     public void removeItem(int position){
-        myDataList.remove(position);
-        notifyDataSetChanged();
+        hideNameByMyData(position);
     }
-    //метод скрытия студента из списка
-//    public void removeItem(int position) {
-//        stringsArray.remove(position);
-//        notifyDataSetChanged();
-//        //TODO
-//        //соединение с май дата
-//        //тут в дата базу нужно внести в таблицу студентов, что он визибл фолс - добавить то есть визибл параметр
-//
-//    }
+
+    //передаем обработку в MyData (поменять значение видимости в БД, удалить из CurrentHashMap)
+    public void hideNameByMyData(int position) {
+        hidingName = myDataList.get(position).toString();
+        System.out.println("МЫ СКРЫВАЕМ ИЗ СПИСКА:");
+        System.out.println(hidingName);
+        myData.hideNameFromList(hidingName);
+    }
 
 
     //Create new views (invoked by the layout manager)

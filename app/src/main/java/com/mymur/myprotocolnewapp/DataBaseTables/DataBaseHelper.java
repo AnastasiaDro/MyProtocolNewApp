@@ -130,7 +130,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         return studentTrialsNames;
     }
 
-
+    //скрывает значение
 
 
 }

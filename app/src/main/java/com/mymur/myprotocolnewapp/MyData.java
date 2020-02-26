@@ -21,10 +21,11 @@ public class MyData implements Observable {
     private HashMap studentTrialsHashMap;
     //счетчик использования метода getDataListForRecycler;
     int dataListUsing = 0;
-
-    private HashMap currentHashMap;
+    private HashMap <String, Integer> currentHashMap;
     int currentStudentId;
     private ArrayList dataListForRecycler;
+    int currentActivityCode;
+
 
 
     //делаем из класса синглтон
@@ -44,17 +45,31 @@ public class MyData implements Observable {
         currentHashMap = new HashMap();
         dataListForRecycler = new ArrayList();
         //в получившийся аррэйлист загружаем данные из БД
+
+        //теперь получим код активности
+        currentActivityCode = -1;
     }
 
 
     public static MyData getInstance(DataBaseHelper dbHelper){
         if (instance == null) {
             instance = new MyData(dbHelper);
+
         }
         return instance;
     }
 
+    //задаёт текущий код активности
+    public void setCurrentActivityCode (int activityCode) {
+        currentActivityCode = activityCode;
+    }
+    public Integer getCurrentActivityCode(){
+        return currentActivityCode;
+    }
+
+
     public static MyData getMyData(){
+
         return instance;
     }
 
@@ -67,7 +82,7 @@ public class MyData implements Observable {
             dataListForRecycler.clear();
         }
         Log.d("getDataList myData", currentHashMap.toString());
-        dataListForRecycler.addAll(currentHashMap.values());
+        dataListForRecycler.addAll(currentHashMap.keySet());
         //счетчик использования метода
         dataListUsing++;
         Log.d("getList use раз: ", Integer.toString(dataListUsing));
@@ -135,9 +150,22 @@ public class MyData implements Observable {
         }
     }
 
+    public void hideNameFromList(String name) {
+        //получим id из базы данных
+        try {
+            int id = currentHashMap.get(name);
+        }catch (NullPointerException e) {
+            System.out.println("Нет значения "+ name);
+        }
+        //запустим поток, который внесёт заметку в БД, что item теперь скрыт:
+        //TODO сделать поток, скрывающий значение в БД
 
 
-
+        //удалим из текущего сurrentHashMap
+        currentHashMap.remove(name);
+        //уведомляем наблюдателей об изменении
+        notifyObservers();
+    }
 
 
 

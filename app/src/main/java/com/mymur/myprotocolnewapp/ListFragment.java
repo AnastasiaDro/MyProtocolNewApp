@@ -59,6 +59,8 @@ public class ListFragment extends Fragment implements Observer {
         myData = MyData.getMyData();
         myData.registerObserver(this);
         addNewClickListener = new AddNewClickListener(activityCode);
+        //отправим в MyData код текущей активности
+        myData.setCurrentActivityCode(activityCode);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -126,6 +128,9 @@ public class ListFragment extends Fragment implements Observer {
                 //TODO
             return true;
             case 222:
+                //TODO
+            return true;
+            case 333:
                 myAdapter.removeItem(item.getGroupId());
                 displayMessage(getResources().getString(R.string.positionHide));
             return true;

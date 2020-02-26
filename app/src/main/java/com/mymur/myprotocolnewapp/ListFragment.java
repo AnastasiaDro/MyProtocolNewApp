@@ -3,7 +3,11 @@ package com.mymur.myprotocolnewapp;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -17,17 +21,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.mymur.myprotocolnewapp.Interfaces.ActivMethods;
 import com.mymur.myprotocolnewapp.Interfaces.Observer;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class ListFragment extends Fragment implements Observer {
 
     private MaterialButton addNewBtn;
     private TextView listTitleText;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter myAdapter;
+   // private RecyclerView.Adapter myAdapter;
+    MyAdapter myAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     //массив для списка
@@ -37,7 +45,7 @@ public class ListFragment extends Fragment implements Observer {
 
     private MyData myData;
     private int placeId;
-    //private int activityCode;
+    private int activityCode;
 
     //КликЛистенер для кнопки
     AddNewClickListener addNewClickListener;
@@ -46,6 +54,7 @@ public class ListFragment extends Fragment implements Observer {
     //Конструктор
     public ListFragment(int placeId, int activityCode) {
         this.placeId = placeId;
+        this.activityCode = activityCode;
        // this.activityCode = activityCode;
         myData = MyData.getMyData();
         myData.registerObserver(this);
@@ -62,8 +71,13 @@ public class ListFragment extends Fragment implements Observer {
         findViews(view);
         //RecyclerView
         initRecycler(view);
+
+//ДЛЯ КОНТЕКСТНОГО МЕНЮ
+        registerForContextMenu(recyclerView);
         return view;
     }
+
+
 
     public void findViews(View view){
         addNewBtn = view.findViewById(R.id.addNewBtn);
@@ -81,8 +95,8 @@ public class ListFragment extends Fragment implements Observer {
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-      //  myAdapter = new MyAdapter();
-        myAdapter = new MyAdapter(myData.getDataListForRecycler());
+
+        myAdapter = new MyAdapter(myData.getDataListForRecycler(), activityCode);
         recyclerView.setAdapter(myAdapter);
     }
 
@@ -101,4 +115,30 @@ public class ListFragment extends Fragment implements Observer {
         myData.getDataListForRecycler();
         myAdapter.notifyDataSetChanged();
     }
+
+
+    //КОНТЕКСТНОЕ МЕНЮ
+    @Override
+    public boolean onContextItemSelected (MenuItem item) {
+
+        switch (item.getItemId()){
+            case 111:
+                //TODO
+            return true;
+            case 222:
+                myAdapter.removeItem(item.getGroupId());
+                displayMessage(getResources().getString(R.string.positionHide));
+            return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+
+    }
+
+    //Вывод сообщения
+    private void displayMessage(String message) {
+        Snackbar.make(this.getView(), message, Snackbar.LENGTH_LONG).show();
+    }
+
+
 }

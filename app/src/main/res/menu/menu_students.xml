@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.mymur.MyMVCProtocolApp.MainActivity">
+    tools:context="com.mymur.MyProtocolNewApp.HomeActivity">
     <item
         android:id="@+id/info"
         android:orderInCategory="100"

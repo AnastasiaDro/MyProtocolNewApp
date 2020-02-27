@@ -124,26 +124,23 @@ public class ListFragment extends Fragment implements Observer {
     public boolean onContextItemSelected (MenuItem item) {
 
         switch (item.getItemId()){
-            case 111:
+            case Constants.ABOUT_STUDENT_CONTEXTMENU_ITEM:
                 //TODO
             return true;
-            case 222:
+            case Constants.ABOUT_TRIAL_CONTEXTMENU_ITEM:
                 //TODO
             return true;
-            case 333:
+            case Constants.HIDE_CONTEXTMENU_ITEM:
                 myAdapter.removeItem(item.getGroupId());
                 displayMessage(getResources().getString(R.string.positionHide));
             return true;
             default:
                 return super.onContextItemSelected(item);
         }
-
     }
 
     //Вывод сообщения
     private void displayMessage(String message) {
         Snackbar.make(this.getView(), message, Snackbar.LENGTH_LONG).show();
     }
-
-
 }

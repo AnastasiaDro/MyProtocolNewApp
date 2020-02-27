@@ -46,13 +46,13 @@ public class MyAdapter extends RecyclerView.Adapter {
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             switch (activityCode) {
                 case (Constants.HOME_ACTIVITY_CONSTANT):
-                    menu.add(this.getAdapterPosition(), 111, 100, R.string.aboutStudent);
+                    menu.add(this.getAdapterPosition(), Constants.ABOUT_STUDENT_CONTEXTMENU_ITEM, 100, R.string.aboutStudent);
                     break;
                 case (Constants.PRACTICE_ACTIVITY_CONSTANT):
-                    menu.add(this.getAdapterPosition(), 222, 100, R.string.aboutTrial);
+                    menu.add(this.getAdapterPosition(), Constants.ABOUT_TRIAL_CONTEXTMENU_ITEM, 100, R.string.aboutTrial);
                     break;
             }
-            menu.add(this.getAdapterPosition(), 333, 200, R.string.hide);
+            menu.add(this.getAdapterPosition(), Constants.HIDE_CONTEXTMENU_ITEM, 200, R.string.hide);
         }
     }
 

@@ -24,6 +24,7 @@ public class TrialsTable {
     public static void addTrial(String trialName, SQLiteDatabase database) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, trialName);
+        values.put(COLUMN_VISIBILITY, 1);
         database.insert(TABLE_NAME, null, values);
     }
 

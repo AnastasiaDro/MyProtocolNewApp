@@ -22,8 +22,11 @@ public class MyData implements Observable {
     //счетчик использования метода getDataListForRecycler;
     int dataListUsing = 0;
     private HashMap<String, Integer> currentHashMap;
-    int currentStudentId;
-    int currentTrialId;
+    private int currentStudentId;
+
+
+
+    private int currentTrialId;
     private ArrayList dataListForRecycler;
     int currentActivityCode;
 
@@ -42,11 +45,14 @@ public class MyData implements Observable {
     public int getCurrentStudentId() {
         return currentStudentId;
     }
-
     public void setCurrentStudentId(int newId) {
         currentStudentId = newId;
     }
 
+
+    public int getCurrentTrialId() {
+        return currentTrialId;
+    }
     public void setCurrentTrialId(int newId) {
         currentTrialId = newId;
     }
@@ -108,7 +114,6 @@ public class MyData implements Observable {
        Log.d("начало currentHashMap=", currentHashMap.toString());
 
         //ДОБАВИЛА
-        //getListThread = new GetListThread(dbHelper, currentActivityCode);
         getListThread = new GetListThread(dbHelper);
         getListThread.start();
         try {

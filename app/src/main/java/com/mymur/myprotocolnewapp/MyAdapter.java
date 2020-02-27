@@ -74,11 +74,9 @@ public class MyAdapter extends RecyclerView.Adapter {
             }
             menu.add(this.getAdapterPosition(), Constants.HIDE_CONTEXTMENU_ITEM, 200, R.string.hide);
         }
-
-
-
     }
 
+    //переименовать метод
     public void setCurrentIdInMyData(TextView textView, View itemView) {
         String textViewContent = textView.getText().toString();
         HashMap <String, Integer> currentHashMap = myData.getCurrentHashMap();

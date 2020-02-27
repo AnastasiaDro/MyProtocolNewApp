@@ -11,10 +11,7 @@ import static com.mymur.myprotocolnewapp.Constants.PRACTICE_ACTIVITY_CONSTANT;
 
 public class HidingThread extends Thread {
 
-    HashMap studentsHashMap;
-    HashMap studentTrialsHashMap;
     DataBaseHelper dbHelper;
-    MyData myData;
     int activityCode;
     int currentId;
 
@@ -22,7 +19,6 @@ public class HidingThread extends Thread {
         this.dbHelper = dbHelper;
         this.activityCode = activityCode;
         this.currentId = currentId;
-        myData = MyData.getInstance(dbHelper);
     }
 
     @Override

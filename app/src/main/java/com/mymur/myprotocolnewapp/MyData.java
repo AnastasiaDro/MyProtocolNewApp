@@ -78,6 +78,7 @@ public class MyData implements Observable {
     public void setCurrentActivityCode (int activityCode) {
         currentActivityCode = activityCode;
     }
+
     public Integer getCurrentActivityCode(){
         return currentActivityCode;
     }
@@ -92,9 +93,7 @@ public class MyData implements Observable {
     }
 
     public ArrayList getDataListForRecycler() {
-        if (!currentHashMap.isEmpty()) {
-            dataListForRecycler.clear();
-        }
+        dataListForRecycler.clear();
         Log.d("getDataList myData", currentHashMap.toString());
         dataListForRecycler.addAll(currentHashMap.keySet());
         //счетчик использования метода
@@ -109,7 +108,8 @@ public class MyData implements Observable {
        Log.d("начало currentHashMap=", currentHashMap.toString());
 
         //ДОБАВИЛА
-        getListThread = new GetListThread(dbHelper, currentActivityCode);
+        //getListThread = new GetListThread(dbHelper, currentActivityCode);
+        getListThread = new GetListThread(dbHelper);
         getListThread.start();
         try {
             getListThread.join();

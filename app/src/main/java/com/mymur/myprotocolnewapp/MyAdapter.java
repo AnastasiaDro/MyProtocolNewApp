@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +89,12 @@ public class MyAdapter extends RecyclerView.Adapter {
                 intent.putExtra("StudentName", textViewContent);
                 //заменим в MyData имя текущего студента
                 myData.setCurrentStudentId(currentId);
+                //заменим в MyData currentActivityCode
+                myData.setCurrentActivityCode(Constants.PRACTICE_ACTIVITY_CONSTANT);
+                //получим новый хэшмап
+                myData.takeCurrentHashMap();
+
+                System.out.println("хэшмап после изменения активити кода: " + currentHashMap.toString());
                 itemView.getContext().startActivity(intent);
                 break;
             case (Constants.PRACTICE_ACTIVITY_CONSTANT):

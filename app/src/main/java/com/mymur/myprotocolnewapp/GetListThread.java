@@ -22,10 +22,12 @@ public class GetListThread extends Thread {
     int activityCode;
     int currentStudentId;
 
-    public GetListThread(DataBaseHelper dbHelper, int activityCode) {
+    public GetListThread(DataBaseHelper dbHelper) {
         this.dbHelper = dbHelper;
-        this.activityCode = activityCode;
+
         myData = MyData.getInstance(dbHelper);
+        this.activityCode = myData.getCurrentActivityCode();
+        System.out.println("activityCode: в гетлист тред" + activityCode);
         studentsHashMap = new HashMap();
         studentTrialsHashMap = new HashMap();
         currentStudentId = myData.getCurrentStudentId();

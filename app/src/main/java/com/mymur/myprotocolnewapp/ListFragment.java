@@ -59,8 +59,6 @@ public class ListFragment extends Fragment implements Observer {
         myData = MyData.getMyData();
         myData.registerObserver(this);
         addNewClickListener = new AddNewClickListener(activityCode);
-        //отправим в MyData код текущей активности
-        myData.setCurrentActivityCode(activityCode);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,7 +80,9 @@ public class ListFragment extends Fragment implements Observer {
 
 
     public void findViews(View view){
+
         addNewBtn = view.findViewById(R.id.addNewBtn);
+        System.out.println("Нашел кнопку");
         addNewBtn.setOnClickListener(addNewClickListener);
         //ищем текстВью с заголовком
         listTitleText = view.findViewById(R.id.listTitleText);
@@ -99,6 +99,7 @@ public class ListFragment extends Fragment implements Observer {
         // specify an adapter (see also next example)
 
         myAdapter = new MyAdapter(myData.getDataListForRecycler());
+        System.out.println("myData.getDataListForRecycler(): "+myData.getDataListForRecycler().toString());
         recyclerView.setAdapter(myAdapter);
     }
 

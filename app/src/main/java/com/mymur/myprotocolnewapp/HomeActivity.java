@@ -9,19 +9,19 @@ import com.mymur.myprotocolnewapp.Interfaces.ActivMethods;
 public class HomeActivity extends AppCompatActivity implements ActivMethods {
 
     ListFragment fragment;
-    private MyData myData;
     int placeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        placeId = R.id.placeholder;
         init();
     }
 
     @Override
     public void init(){
+        placeId = R.id.placeholder;
+        int activityCode = getActivityCode();
         fragment = new ListFragment(placeId, getActivityCode());
         Log.d("HomeActivity", "Создан ListFragment");
         fragment.postFragment(this);

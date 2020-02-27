@@ -7,8 +7,10 @@ import android.os.Bundle;
 import com.mymur.myprotocolnewapp.Interfaces.ActivMethods;
 
 public class ProtocolActivity extends AppCompatActivity implements ActivMethods {
-    ListFragment fragment;
-    int placeId;
+    ListFragment listFragment;
+    TrialDataFragment trialFragment;
+    int placeId_list;
+    int placeId_trialData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +22,12 @@ public class ProtocolActivity extends AppCompatActivity implements ActivMethods 
 
     @Override
     public void init() {
-        placeId = R.id.placeholderForProtocol;
-        fragment = new ListFragment(placeId, getActivityCode());
-        fragment.postFragment(this);
+        placeId_list = R.id.placeholderForProtocol;
+        placeId_trialData = R.id.placePracticeFragment;
+        listFragment = new ListFragment(placeId_list, getActivityCode());
+        trialFragment = new TrialDataFragment(placeId_trialData);
+        listFragment.postFragment(this);
+        trialFragment.postFragment(this);
     }
 
     @Override

@@ -66,7 +66,7 @@ public class ListFragment extends Fragment implements Observer {
         setRetainInstance(true);
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         //получим доступ к классу MyData;
-        myData = MyData.getMyData();
+      //  myData = MyData.getMyData();
         //ищем кнопки и т.п.
         findViews(view);
         //RecyclerView

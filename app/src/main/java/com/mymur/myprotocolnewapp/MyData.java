@@ -68,7 +68,6 @@ public class MyData implements Observable {
 
 
     public static MyData getMyData(){
-
         return instance;
     }
 
@@ -158,7 +157,4 @@ public class MyData implements Observable {
         //уведомляем наблюдателей об изменении
         notifyObservers();
     }
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.mymur.myprotocolnewapp;
 
+import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyAdapter extends RecyclerView.Adapter {
    // private ArrayList myDataList;
@@ -19,9 +21,11 @@ public class MyAdapter extends RecyclerView.Adapter {
     ArrayList myDataList;
     int activityCode;
     String hidingName;
+    private int selectedPosition;
+
 
     //ДЛЯ КОНТЕСТНОГО МЕНЮ
-    private int position;
+   int position;
     public int getPosition(){
         return position;
     }
@@ -35,11 +39,25 @@ public class MyAdapter extends RecyclerView.Adapter {
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+        //выделенная цветом позиция
+
         public MyViewHolder(final View itemView){
             super(itemView);
 
+            final TextView textView = itemView.findViewById(R.id.textName);
 //ДЛЯ КОНТЕКСТНОГО МЕНЮ
             itemView.setOnCreateContextMenuListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //   Связано с выделением
+                int currentPosition = getAdapterPosition();
+                //   adapterPos = currentPosition;
+                selectItemView(currentPosition, itemView);
+                setCurrentIdInMyData(textView, itemView);
+                }
+             }
+            );
         }
 
         @Override
@@ -54,9 +72,41 @@ public class MyAdapter extends RecyclerView.Adapter {
             }
             menu.add(this.getAdapterPosition(), Constants.HIDE_CONTEXTMENU_ITEM, 200, R.string.hide);
         }
+
+
+
     }
 
+    public void setCurrentIdInMyData(TextView textView, View itemView) {
+        String textViewContent = textView.getText().toString();
+        HashMap <String, Integer> currentHashMap = myData.getCurrentHashMap();
+        int currentId = currentHashMap.get(textViewContent);
+        switch (activityCode) {
+            case (Constants.HOME_ACTIVITY_CONSTANT):
+                Intent intent = new Intent(textView.getContext(), ProtocolActivity.class);
+                intent.putExtra("StudentName", textViewContent);
+                //заменим в MyData имя текущего студента
+                myData.setCurrentStudentId(currentId);
+                itemView.getContext().startActivity(intent);
+                break;
+            case (Constants.PRACTICE_ACTIVITY_CONSTANT):
+                myData.setCurrentTrialId(currentId);
+                break;
+        }
+    }
 
+    public void selectItemView(int currentPosition, View itemView) {
+        if (selectedPosition != currentPosition) {
+            // Temporarily save the last selected position
+            int lastSelectedPosition = selectedPosition;
+            // Save the new selected position
+            selectedPosition = currentPosition;
+            // update the previous selected row
+            notifyItemChanged(lastSelectedPosition);
+            // select the clicked row
+            itemView.setSelected(true);
+        }
+    }
 
 
     //Provide a suitable constructor (depends on the kind of dataset)
@@ -66,7 +116,6 @@ public class MyAdapter extends RecyclerView.Adapter {
         this.activityCode = myData.getCurrentActivityCode();
         //строка, которую нужно скрыть и изменить в базе данных
         hidingName = null;
-
     }
 
 
@@ -101,16 +150,12 @@ public class MyAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TextView textView = holder.itemView.findViewById(R.id.textName);
         textView.setText(myDataList.get(position).toString());
+
     }
 
     @Override
     public int getItemCount() {
         return myDataList.size();
     }
-
-
-
-
-
 
 }

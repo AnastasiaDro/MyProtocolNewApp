@@ -14,18 +14,18 @@ import java.util.Map;
 
 public class MyData implements Observable {
     private static MyData instance;
-    private List <Observer> observers;
+    private List<Observer> observers;
     private DataBaseHelper dbHelper;
     //список студентов имя/номер
     private HashMap studentsHashMap;
     private HashMap studentTrialsHashMap;
     //счетчик использования метода getDataListForRecycler;
     int dataListUsing = 0;
-    private HashMap <String, Integer> currentHashMap;
+    private HashMap<String, Integer> currentHashMap;
     int currentStudentId;
+    int currentTrialId;
     private ArrayList dataListForRecycler;
     int currentActivityCode;
-
 
 
     //делаем из класса синглтон
@@ -33,15 +33,31 @@ public class MyData implements Observable {
         this.currentHashMap = currentHashMap;
     }
 
+    public HashMap <String, Integer> getCurrentHashMap() {
+    return currentHashMap;
+    }
+
+
+
     public int getCurrentStudentId() {
         return currentStudentId;
     }
+
+    public void setCurrentStudentId(int newId) {
+        currentStudentId = newId;
+    }
+
+    public void setCurrentTrialId(int newId) {
+        currentTrialId = newId;
+    }
+
 
     private MyData(DataBaseHelper dbHelper){
         studentsHashMap = new HashMap();
         observers = new LinkedList<>();
         this.dbHelper = dbHelper;
         currentStudentId = -1;
+        currentTrialId = -1;
         currentHashMap = new HashMap();
         dataListForRecycler = new ArrayList();
         //теперь получим код активности

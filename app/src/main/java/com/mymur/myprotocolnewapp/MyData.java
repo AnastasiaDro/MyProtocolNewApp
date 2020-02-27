@@ -44,8 +44,6 @@ public class MyData implements Observable {
         currentStudentId = -1;
         currentHashMap = new HashMap();
         dataListForRecycler = new ArrayList();
-        //в получившийся аррэйлист загружаем данные из БД
-
         //теперь получим код активности
         currentActivityCode = -1;
     }
@@ -87,8 +85,6 @@ public class MyData implements Observable {
         //счетчик использования метода
         dataListUsing++;
         Log.d("getList use раз: ", Integer.toString(dataListUsing));
-
-
         return dataListForRecycler;
     }
 
@@ -156,8 +152,8 @@ public class MyData implements Observable {
         int id = currentHashMap.get(name);
 
         //запустим поток, который внесёт заметку в БД, что item теперь скрыт:
-        //TODO сделать поток, скрывающий значение в БД
-
+        HidingThread hidingThread = new HidingThread(dbHelper, currentActivityCode, id);
+        hidingThread.start();
         //удалим из текущего сurrentHashMap
         currentHashMap.remove(name);
         //уведомляем наблюдателей об изменении

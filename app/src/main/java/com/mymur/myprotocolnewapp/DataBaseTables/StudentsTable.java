@@ -33,7 +33,7 @@ public class StudentsTable {
         database.insert(TABLE_NAME, null, values);
     }
 
-    public static HashMap<String, Integer> getAllStudentsNames(SQLiteDatabase database){
+    public static HashMap<String, Integer> getAllStudentsNamesIfVisible(SQLiteDatabase database){
         HashMap<String, Integer> studentsHashMap = new HashMap<>();
 
         //Cursor myCursor = database.rawQuery("SELECT " + COLUMN_ID + ", "+ COLUMN_NAME + " from "  +TABLE_NAME,  null);
@@ -50,6 +50,25 @@ public class StudentsTable {
         myCursor.close();
         return studentsHashMap;
     }
+
+    public static HashMap<String, Integer> getAllStudentsNames(SQLiteDatabase database){
+        HashMap<String, Integer> studentsHashMap = new HashMap<>();
+
+        //Cursor myCursor = database.rawQuery("SELECT " + COLUMN_ID + ", "+ COLUMN_NAME + " from "  +TABLE_NAME,  null);
+
+        //Теперь берем студентов только если они видимы
+        Cursor myCursor = database.rawQuery("SELECT " + COLUMN_ID + ", "+ COLUMN_NAME + " from "  +TABLE_NAME,  null);
+        int idIndex = myCursor.getColumnIndexOrThrow(COLUMN_ID);
+        int nameIndex = myCursor.getColumnIndexOrThrow(COLUMN_NAME);
+
+        while (myCursor.moveToNext()) {
+            studentsHashMap.put(myCursor.getString(nameIndex), myCursor.getInt(idIndex));
+        }
+        myCursor.close();
+        return studentsHashMap;
+    }
+
+
 
     //Метод делания студента невидимым
     public static void makeStudentInvisible(int student_id, SQLiteDatabase database) {

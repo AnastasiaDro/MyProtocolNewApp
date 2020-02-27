@@ -76,7 +76,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
     //извлекает HashMap всех студентов
      public HashMap<String, Integer>  extractStudents() {
-          studentsMap = StudentsTable.getAllStudentsNames(this.getWritableDatabase());
+          studentsMap = StudentsTable.getAllStudentsNamesIfVisible(this.getWritableDatabase());
           return studentsMap;
      }
 
@@ -104,7 +104,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         allStudentTrialsIds = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
         HashMap <Integer, String> allTrialsMap = new HashMap<>();
         //получаем HashMap всех проб
-        allTrialsMap = TrialsTable.getAllTrialsIdAndNames(this.getReadableDatabase());
+        allTrialsMap = TrialsTable.getTrialsIdAndNamesIfVisible(this.getReadableDatabase());
         //Создадим HashMap для пар "ключ-значение" проб, которые есть у студента
         HashMap <Integer, String> studentTrialsHashMap = new HashMap();
         // инт, куда будем в цикле записывать id, хранящийся в массиве
@@ -122,7 +122,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         ArrayList <Integer> allStudentTrialsIds = new ArrayList<>();
         allStudentTrialsIds = PracticingResultsTable.getStudentTrialsIDArray(studentId, this.getReadableDatabase());
         HashMap <Integer, String> allTrialsMap = new HashMap<>();
-        allTrialsMap = TrialsTable.getAllTrialsIdAndNames(this.getReadableDatabase());
+        allTrialsMap = TrialsTable.getTrialsIdAndNamesIfVisible(this.getReadableDatabase());
         ArrayList<String> studentTrialsNames = new ArrayList<>();
         for (int i = 0; i < allStudentTrialsIds.size(); i++) {
             studentTrialsNames.add(allTrialsMap.get(allStudentTrialsIds.get(i)));
@@ -134,6 +134,10 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     //TODO
     public void makeStudentInvisible(int student_id) {
         StudentsTable.makeStudentInvisible(student_id, this.getWritableDatabase());
+    }
+
+    public void makeTrialInvisible(int trial_id) {
+        TrialsTable.makeTrialInvisible(trial_id, this.getWritableDatabase());
     }
 
 

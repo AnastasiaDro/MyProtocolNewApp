@@ -13,11 +13,12 @@ public class TrialsTable {
     private final static String TABLE_NAME = "Trials";
     private final static String COLUMN_ID = "_id";
     private final static String COLUMN_NAME = "name";
-
+    private final static String COLUMN_VISIBILITY = "visibility";
 
     static void createTable(SQLiteDatabase database){
         database.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" + COLUMN_ID +
-                " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT);");
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_VISIBILITY +" INTEGER);");
+
     }
 
     public static void addTrial(String trialName, SQLiteDatabase database) {
@@ -46,7 +47,7 @@ public class TrialsTable {
     public static HashMap<Integer, String> getAllTrialsIdAndNames(SQLiteDatabase database){
         HashMap<Integer, String> trialsHashMap = new HashMap<>();
         // Cursor myCursor = database.rawQuery("select name from Students", null);
-        Cursor myCursor = database.rawQuery("SELECT " + COLUMN_ID + ", "+ COLUMN_NAME + " from "  +TABLE_NAME,  null);
+        Cursor myCursor = database.rawQuery("SELECT " + COLUMN_ID + ", "+ COLUMN_NAME + " from "  +TABLE_NAME+ " WHERE " + COLUMN_VISIBILITY +" LIKE '" + 1 + "'",  null);
         int idIndex = myCursor.getColumnIndexOrThrow(COLUMN_ID);
         int nameIndex = myCursor.getColumnIndexOrThrow(COLUMN_NAME);
 
@@ -73,6 +74,13 @@ public static HashMap<String, Integer> getAllTrialsNamesAndId(SQLiteDatabase dat
     return trialsHashMap;
 
 }
+
+    //Метод делания студента невидимым
+    public static void makeTrialInvisible(int trial_id, SQLiteDatabase database) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_VISIBILITY, 0);
+        database.update(TABLE_NAME, contentValues, COLUMN_ID + "=" + String.valueOf(trial_id), null);
+    }
 
 
 

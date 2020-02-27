@@ -53,7 +53,9 @@ public class StudentsTable {
 
     //Метод делания студента невидимым
     public static void makeStudentInvisible(int student_id, SQLiteDatabase database) {
-
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_VISIBILITY, 0);
+        database.update(TABLE_NAME, contentValues, COLUMN_ID + "=" + String.valueOf(student_id), null);
     }
 
 }

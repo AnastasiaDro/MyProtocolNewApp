@@ -24,6 +24,25 @@
     <string name="allStudentsList">All students</string>
     <string name="allTrialsOfStudentList">List of trials</string>
     <string name="exitSession">Exit session</string>
-
     <string name="aboutProgram">About app</string>
+    
+    <string name="trialName">trialName</string>
+    <string name="whithoutHint">Without hint</string>
+
+    <string name="answer">Answer</string>
+    <string name="rightAnswer">Right answer</string>
+    <string name="wrongAnswer">Wrong answer</string>
+
+    
+    <string name="full_psysical_hint">full physical</string>
+    <string name="partial_psysical_hint">partial physical</string>
+    <string name="gesture_hint">gesture</string>
+    <string name="full_verbal_hint">full verbal</string>
+    <string name="partial_verbal_hint">partial verbal</string>
+    <string name="written_hint">written</string>
+    <string name="visual_hint">visual</string>
+    <string name="audio_hint">audio</string>
+    <string name="positional_hint">positional</string>
+    <string name="saveTrialResultBtn">Save result</string>
+
 </resources>

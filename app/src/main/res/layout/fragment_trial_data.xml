@@ -52,12 +52,12 @@
     </TableLayout>
 
     <CheckBox
-        android:id="@+id/noHintCheck"
+        android:id="@+id/whithoutHintCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
+        android:text="@string/whithoutHint"
         tools:layout_editor_absoluteX="143dp"
         tools:layout_editor_absoluteY="150dp" />
 
@@ -75,25 +75,25 @@
             android:gravity="center">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/fullPhysHintChek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/full_psysical_hint" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/partPsysHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/partial_psysical_hint" />
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/gestHintChek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/gesture_hint" />
         </TableRow>
 
         <TableRow
@@ -102,25 +102,25 @@
             android:gravity="center">
 
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/fullVerbHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/full_verbal_hint" />
 
             <CheckBox
-                android:id="@+id/checkBox5"
+                android:id="@+id/partVerbHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/partial_verbal_hint" />
 
             <CheckBox
-                android:id="@+id/checkBox6"
+                android:id="@+id/writHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/written_hint" />
         </TableRow>
 
 
@@ -130,25 +130,25 @@
             android:gravity="center">
 
             <CheckBox
-                android:id="@+id/checkBox7"
+                android:id="@+id/visualHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/visual_hint" />
 
             <CheckBox
-                android:id="@+id/checkBox8"
+                android:id="@+id/audHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/audio_hint" />
 
             <CheckBox
-                android:id="@+id/checkBox9"
+                android:id="@+id/posHintCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:layout_margin="15dp"/>
+                android:layout_margin="15dp"
+                android:text="@string/positional_hint" />
         </TableRow>
 
     </TableLayout>
@@ -163,30 +163,30 @@
         tools:layout_editor_absoluteX="110dp">
 
         <TextView
-            android:id="@+id/radBtnHeader"
+            android:id="@+id/radioBtnHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/answer" />
 
         <RadioButton
-            android:id="@+id/radBtnRight"
+            android:id="@+id/radioBtnRight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="radBtnRight" />
+            android:text="@string/rightAnswer" />
 
         <RadioButton
-            android:id="@+id/radButtonWrong"
+            android:id="@+id/radioBtnWrong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/wrongAnswer" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/saveResultBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginTop="50dp"
-        android:text="Button" />
+        android:text="@string/saveTrialResultBtn" />
 
 </LinearLayout>

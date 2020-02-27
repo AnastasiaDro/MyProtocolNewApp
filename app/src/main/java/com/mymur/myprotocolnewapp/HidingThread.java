@@ -11,6 +11,8 @@ import static com.mymur.myprotocolnewapp.Constants.PRACTICE_ACTIVITY_CONSTANT;
 
 public class HidingThread extends Thread {
 
+    //Класс, в зависимости от кода активности скрывающий элемент (делает в базе данных его невидимым)
+
     DataBaseHelper dbHelper;
     int activityCode;
     int currentId;

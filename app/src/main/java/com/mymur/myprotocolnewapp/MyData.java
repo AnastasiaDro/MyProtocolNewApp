@@ -148,9 +148,8 @@ public class MyData implements Observable {
     }
 
     public void hideNameFromList(String name) {
-        //получим id из базы данных
+        //получим id студента или пробы из используемого HashMap-а
         int id = currentHashMap.get(name);
-
         //запустим поток, который внесёт заметку в БД, что item теперь скрыт:
         HidingThread hidingThread = new HidingThread(dbHelper, currentActivityCode, id);
         hidingThread.start();

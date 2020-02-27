@@ -23,13 +23,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mymur.myprotocolnewapp.Interfaces.ActivMethods;
+import com.mymur.myprotocolnewapp.Interfaces.FragmentMethods;
 import com.mymur.myprotocolnewapp.Interfaces.Observer;
 
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
-public class ListFragment extends Fragment implements Observer {
+public class ListFragment extends Fragment implements Observer, FragmentMethods {
 
     private MaterialButton addNewBtn;
     private TextView listTitleText;
@@ -78,7 +79,7 @@ public class ListFragment extends Fragment implements Observer {
     }
 
 
-
+    @Override
     public void findViews(View view){
 
         addNewBtn = view.findViewById(R.id.addNewBtn);
@@ -89,6 +90,15 @@ public class ListFragment extends Fragment implements Observer {
         if (activityCode == Constants.PRACTICE_ACTIVITY_CONSTANT) {
             listTitleText.setText(R.string.set_trial);
         }
+    }
+
+    //Вставить фрагмент
+    @Override
+    public void postFragment(AppCompatActivity activity){
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(placeId, this);
+        ft.commit();
     }
 
     public void initRecycler(View view){
@@ -106,13 +116,7 @@ public class ListFragment extends Fragment implements Observer {
         recyclerView.setAdapter(myAdapter);
     }
 
-    //Вставить фрагмент
-    public void postFragment(AppCompatActivity activity){
-        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(placeId, this);
-        ft.commit();
-    }
+
 
 
 //обновление списка recyclerView

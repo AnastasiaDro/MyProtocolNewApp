@@ -131,11 +131,11 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     }
 
     //делает значение в списке студентов невидимым
-    //TODO
     public void makeStudentInvisible(int student_id) {
         StudentsTable.makeStudentInvisible(student_id, this.getWritableDatabase());
     }
 
+    //делает значение в списке проб невидимым
     public void makeTrialInvisible(int trial_id) {
         TrialsTable.makeTrialInvisible(trial_id, this.getWritableDatabase());
     }

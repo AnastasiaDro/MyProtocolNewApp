@@ -86,6 +86,9 @@ public class ListFragment extends Fragment implements Observer {
         addNewBtn.setOnClickListener(addNewClickListener);
         //ищем текстВью с заголовком
         listTitleText = view.findViewById(R.id.listTitleText);
+        if (activityCode == Constants.PRACTICE_ACTIVITY_CONSTANT) {
+            listTitleText.setText(R.string.set_trial);
+        }
     }
 
     public void initRecycler(View view){

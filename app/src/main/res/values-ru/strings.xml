@@ -34,11 +34,18 @@
     <string name="rightAnswer">Правильный</string>
     <string name="wrongAnswer">Неправильный</string>
 
+    <string name="hints">Hints</string>
+
+    <string name="all_psysical_hints">psysical</string>
     <string name="full_psysical_hint">полн физич</string>
     <string name="partial_psysical_hint">частич физич</string>
+
     <string name="gesture_hint">жестовая</string>
+
+    <string name="all_verbal_hints">verbals</string>
     <string name="full_verbal_hint">полн вербаль</string>
     <string name="partial_verbal_hint">частич вербаль</string>
+
     <string name="written_hint">текстовая</string>
     <string name="visual_hint">визуальная</string>
     <string name="audio_hint">звуковая</string>

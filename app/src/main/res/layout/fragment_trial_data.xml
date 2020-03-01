@@ -14,22 +14,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textViewTrialName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="TrialName"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toTopOf="@+id/trialCounterPerDay"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            >
 
             <TableLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
@@ -61,107 +50,99 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:text="@string/whithoutHint" />
 
-            <TableLayout
-                android:id="@+id/tableLayout"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_gravity="center"
+                android:text="@string/hints"
+                />
 
-                <TableRow
+            <RadioGroup
+                android:id="@+id/PhysHintRadiGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                <RadioButton
+                    android:id="@+id/fullPsysRadi"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:text="@string/full_psysical_hint" />
 
-                    <CheckBox
-                        android:id="@+id/fullPhysHintChek"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/full_psysical_hint" />
-
-                    <CheckBox
-                        android:id="@+id/partPsysHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/partial_psysical_hint" />
-
-                    <CheckBox
-                        android:id="@+id/gestHintChek"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/gesture_hint" />
-                </TableRow>
-
-                <TableRow
+                <RadioButton
+                    android:id="@+id/partPsysRadi"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/fullVerbHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/full_verbal_hint" />
-
-                    <CheckBox
-                        android:id="@+id/partVerbHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/partial_verbal_hint" />
-
-                    <CheckBox
-                        android:id="@+id/writHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/written_hint" />
-                </TableRow>
+                    android:layout_height="wrap_content"
+                    android:text="@string/partial_psysical_hint" />
+            </RadioGroup>
 
 
-                <TableRow
+
+            <CheckBox
+                android:id="@+id/gestHintChek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gesture_hint"
+                android:layout_gravity="right"/>
+
+            <RadioGroup
+                android:id="@+id/VerbHintRadiGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/fullVerbRadi"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:text="@string/full_verbal_hint" />
 
-                    <CheckBox
-                        android:id="@+id/visualHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/visual_hint" />
+                <RadioButton
+                    android:id="@+id/partVerbRadi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/partial_verbal_hint" />
+            </RadioGroup>
 
-                    <CheckBox
-                        android:id="@+id/audHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/audio_hint" />
 
-                    <CheckBox
-                        android:id="@+id/posHintCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="@string/positional_hint" />
-                </TableRow>
 
-            </TableLayout>
+            <CheckBox
+                android:id="@+id/writHintCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/written_hint"
+                android:layout_gravity="right"
+                />
+
+            <CheckBox
+                android:id="@+id/visualHintCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/visual_hint"
+                android:layout_gravity="right"/>
+
+            <CheckBox
+                android:id="@+id/audHintCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/audio_hint"
+                android:layout_gravity="right"/>
+
+            <CheckBox
+                android:id="@+id/posHintCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/positional_hint"
+                android:layout_gravity="right"/>
 
             <RadioGroup
                 android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+                >
 
                 <TextView
                     android:id="@+id/radioBtnHeader"
@@ -184,10 +165,9 @@
 
             <Button
                 android:id="@+id/saveResultBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
                 android:text="@string/saveTrialResultBtn" />
 
         </LinearLayout>

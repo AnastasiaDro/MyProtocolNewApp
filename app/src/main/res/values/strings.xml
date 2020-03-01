@@ -33,12 +33,18 @@
     <string name="rightAnswer">Right answer</string>
     <string name="wrongAnswer">Wrong answer</string>
 
-    
+    <string name="hints">Hints</string>
+
+    <string name="all_psysical_hints">psysical</string>
     <string name="full_psysical_hint">full physical</string>
     <string name="partial_psysical_hint">partial physical</string>
+
     <string name="gesture_hint">gesture</string>
+
+    <string name="all_verbal_hints">verbals</string>
     <string name="full_verbal_hint">full verbal</string>
     <string name="partial_verbal_hint">partial verbal</string>
+
     <string name="written_hint">written</string>
     <string name="visual_hint">visual</string>
     <string name="audio_hint">audio</string>
